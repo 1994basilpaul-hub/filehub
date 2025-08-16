@@ -6,7 +6,9 @@ class Category(models.Model):
     name = models.CharField(max_length=120, unique=True)
     slug = AutoSlugField(populate_from='name', unique=True)
 
-    def str(self): return self.name
+    def __str__(self):
+        return self.name
+
 
 class FileItem(models.Model):
     title = models.CharField(max_length=255)
@@ -19,7 +21,7 @@ class FileItem(models.Model):
 
     # SEO meta
     meta_title = models.CharField(max_length=255, blank=True)
-    meta_description = models.CharField(max_length=160, blank=True)
+    meta_description = models.CharField(max_length=255, blank=True)
 
     class Meta:
         ordering = ['-uploaded_at']
