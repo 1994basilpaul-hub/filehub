@@ -1,5 +1,7 @@
 {% extends 'files/base.html' %}
-{% block title %}Downloads - FileHub{% endblock %}
+
+{% block title %}Kerala PSC PYQ & Study Materials - Downloads{% endblock %}
+{% block meta_description %}Download Kerala PSC previous year question papers (PYQ), study materials, and syllabus details including answers and solutions for exam preparation.{% endblock %}
 
 {% block content %}
 <h1 class="mb-4">Downloads</h1>
@@ -8,10 +10,10 @@
   <table class="table table-striped table-hover">
     <thead class="thead-dark">
       <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Category</th>
-        <th>Download Link</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Download Link</th>
       </tr>
     </thead>
     <tbody>
@@ -21,20 +23,20 @@
           <td>
             <ul class="mb-0">
               {% for line in item.description.splitlines %}
-                <li>{{ line }}</li>
+                <li class="mb-1">{{ line }}</li>
               {% endfor %}
             </ul>
           </td>
           <td>{{ item.category }}</td>
           <td>
-            <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-sm">
+            <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-sm btn-block btn-md-auto">
               Download
             </a>
           </td>
         </tr>
       {% empty %}
         <tr>
-          <td colspan="5" class="text-center">No files found.</td>
+          <td colspan="4" class="text-center">No files found.</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -58,4 +60,5 @@
     {% endif %}
   </ul>
 </nav>
+
 {% endblock %}
