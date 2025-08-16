@@ -1,0 +1,12 @@
+{% extends 'files/base.html' %}
+{% block title %}{{ item.meta_title|default:item.title }}{% endblock %}
+{% block meta_description %}{{ item.meta_description|default:item.description|truncatechars:150 }}{% endblock %}
+{% block content %}
+<h1>{{ item.title }}</h1>
+<p>{{ item.description }}</p>
+<p>Category: {{ item.category }}</p>
+<p>Uploaded: {{ item.uploaded_at }}</p>
+<p>Downloads: {{ item.downloads }}</p>
+
+<a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success">Download</a>
+{% endblock %}
