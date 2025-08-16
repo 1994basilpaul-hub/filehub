@@ -11,7 +11,6 @@
         <th>Title</th>
         <th>Description</th>
         <th>Category</th>
-        <th>Downloads</th>
         <th>Download Link</th>
       </tr>
     </thead>
@@ -27,7 +26,6 @@
             </ul>
           </td>
           <td>{{ item.category }}</td>
-          <td>{{ item.downloads }}</td>
           <td>
             <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-sm">
               Download

@@ -2,34 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>{% block title %}FileHub{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}A library of downloadable files{% endblock %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}Kerala PSC PYQ & Study Materials - FileHub{% endblock %}</title>
   
+  <meta name="description" content="{% block meta_description %}Download Kerala PSC previous year question papers (PYQ) and study materials including syllabus, answers, and detailed solutions for exam preparation.{% endblock %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <style>
-    /* Optional: custom spacing for mobile cards/content */
-    .card-text { white-space: pre-line; } /* preserve line breaks in descriptions */
+    /* Preserve line breaks in descriptions */
+    .card-text { white-space: pre-line; }
+
+    /* Mobile responsive table */
+    @media (max-width: 767px) {
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'files:index' %}">FileHub</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-            aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  {% include 'files/nav.html' %}
 
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <form class="form-inline ml-auto my-2 my-lg-0" method="get" action="{% url 'files:index' %}">
-        <input name="q" class="form-control mr-sm-2" type="search" placeholder="Search..." value="{{ q }}">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
 
   <!-- Main container -->
   <div class="container py-4">
