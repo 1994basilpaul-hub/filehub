@@ -55,7 +55,7 @@
             {{ line }}<br>
           {% endfor %}
         </p>
-        <p class="mb-1"><strong>Category:</strong> {{ item.category }}</p>
+        
         <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-block">Download</a>
       </div>
     </div>
