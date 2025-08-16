@@ -19,9 +19,6 @@ def index(request):
     items = paginator.get_page(page)
     return render(request, 'files/index.html', {'items': items, 'q': q})
 
-def detail(request, slug):
-    item = get_object_or_404(FileItem, slug=slug)
-    return render(request, 'files/detail.html', {'item': item})
 
 def download(request, slug):
     item = get_object_or_404(FileItem, slug=slug)
