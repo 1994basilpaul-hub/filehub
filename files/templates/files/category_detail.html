@@ -1,10 +1,10 @@
 {% extends 'files/base.html' %}
 
-{% block title %}Kerala PSC PYQ & Study Materials - Downloads{% endblock %}
-{% block meta_description %}Download Kerala PSC previous year question papers (PYQ), study materials, and syllabus details including answers and solutions for exam preparation.{% endblock %}
+{% block title %}{{ category.name }} - Downloads{% endblock %}
+{% block meta_description %}Download all files for the category {{ category.name }}.{% endblock %}
 
 {% block content %}
-<h1 class="mb-4">Kerala PSC Previous Year Question Papers Downloads</h1>
+<h1 class="mb-4">{{ category.name }}</h1>
 
 <!-- Desktop table -->
 <div class="d-none d-md-block table-responsive">
@@ -13,8 +13,7 @@
       <tr>
         <th>Title</th>
         <th>Description</th>
-        
-        <th>Download Link</th>
+        <th>Download</th>
       </tr>
     </thead>
     <tbody>
@@ -28,16 +27,13 @@
             {% endfor %}
           </ul>
         </td>
-        
         <td>
-          <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-sm btn-block">
-            Download
-          </a>
+          <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-sm btn-block">Download</a>
         </td>
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4" class="text-center">No files found.</td>
+        <td colspan="3" class="text-center">No files found in this category.</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -55,12 +51,11 @@
             {{ line }}<br>
           {% endfor %}
         </p>
-        
         <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-block">Download</a>
       </div>
     </div>
   {% empty %}
-    <p class="text-center">No files found.</p>
+    <p class="text-center">No files found in this category.</p>
   {% endfor %}
 </div>
 
@@ -69,7 +64,7 @@
   <ul class="pagination justify-content-center flex-wrap">
     {% if items.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ items.previous_page_number }}{% if q %}&q={{ q }}{% endif %}">Previous</a>
+        <a class="page-link" href="?page={{ items.previous_page_number }}">Previous</a>
       </li>
     {% endif %}
     <li class="page-item disabled">
@@ -77,7 +72,7 @@
     </li>
     {% if items.has_next %}
       <li class="page-item">
-        <a class="page-link" href="?page={{ items.next_page_number }}{% if q %}&q={{ q }}{% endif %}">Next</a>
+        <a class="page-link" href="?page={{ items.next_page_number }}">Next</a>
       </li>
     {% endif %}
   </ul>

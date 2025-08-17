@@ -10,14 +10,42 @@ from django.conf import settings
 
 def index(request):
     qs = FileItem.objects.all()
-    q = request.GET.get('q')
+    q = request.GET.get('q', '')  # default to empty string
     if q:
         qs = qs.filter(Q(title__icontains=q) | Q(description__icontains=q))
 
     paginator = Paginator(qs, 12)
     page = request.GET.get('page')
     items = paginator.get_page(page)
-    return render(request, 'files/index.html', {'items': items, 'q': q})
+    categories = Category.objects.all()  # fetch all categories
+
+    return render(request, 'files/index.html', {
+        'items': items,
+        'q': q,
+        'categories': categories
+    })
+
+
+
+
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    qs = FileItem.objects.filter(category=category)
+
+    # Pagination
+    paginator = Paginator(qs, 12)
+    page = request.GET.get('page')
+    items = paginator.get_page(page)
+
+    categories = Category.objects.all()  # Add this line
+
+    return render(request, 'files/category_detail.html', {
+        'category': category,
+        'items': items,
+        'categories': categories  # Pass categories to template
+    })
+
+
 
 
 def download(request, slug):
