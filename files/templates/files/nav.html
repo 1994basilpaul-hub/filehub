@@ -32,6 +32,20 @@
             {% endfor %}
           </div>
         </li>
+        <li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="notesDropdown" role="button" data-toggle="dropdown"
+     aria-haspopup="true" aria-expanded="false">
+    Notes
+  </a>
+  <div class="dropdown-menu" aria-labelledby="notesDropdown">
+    {% for cat in note_categories %}
+      <a class="dropdown-item" href="{% url 'files:note_category_detail' cat.slug %}">{{ cat.name }}</a>
+    {% empty %}
+      <span class="dropdown-item disabled">No notes categories</span>
+    {% endfor %}
+  </div>
+</li>
+
       </ul>
 
       <!-- Search form -->

@@ -8,6 +8,10 @@ from django.http import HttpResponseRedirect, FileResponse
 import os
 from django.conf import settings
 
+from .models import Category, Note_Category, FileItem
+from django.core.paginator import Paginator
+from django.db.models import Q
+
 def index(request):
     qs = FileItem.objects.all()
     q = request.GET.get('q', '')  # default to empty string
@@ -17,13 +21,17 @@ def index(request):
     paginator = Paginator(qs, 12)
     page = request.GET.get('page')
     items = paginator.get_page(page)
-    categories = Category.objects.all()  # fetch all categories
+
+    categories = Category.objects.all()         # existing
+    note_categories = Note_Category.objects.all()  # <-- add this
 
     return render(request, 'files/index.html', {
         'items': items,
         'q': q,
-        'categories': categories
+        'categories': categories,
+        'note_categories': note_categories,       # <-- pass to template
     })
+
 
 
 
@@ -85,5 +93,17 @@ def explain(request, slug):
         'file_item': file_item,
         'contents': contents,
         'category_no': category_no,
+    })
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import Note_Category, NoteContent
+
+def note_category_detail(request, slug):
+    category = get_object_or_404(Note_Category, slug=slug)
+    notes = NoteContent.objects.filter(category=category)
+    return render(request, 'files/note_category_detail.html', {
+        'category': category,
+        'notes': notes
     })
 

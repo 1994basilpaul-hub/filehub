@@ -8,6 +8,13 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Note_Category(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    slug = AutoSlugField(populate_from='name', unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class FileItem(models.Model):
@@ -42,3 +49,13 @@ class FileContent(models.Model):
 
     def __str__(self):
         return f"Content for {self.file_item.title}"
+    
+class NoteContent(models.Model):
+    title= models.CharField(max_length=255)
+    category = models.ForeignKey(Note_Category, on_delete=models.SET_NULL, null=True, blank=True)  
+    content = models.TextField()  # Combined field for English/Malayalam/questions/options/answer/explanation
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+    

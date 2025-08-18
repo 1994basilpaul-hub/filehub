@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FileItem, Category,FileContent
+from .models import FileItem, Category,FileContent, Note_Category, NoteContent
 
 @admin.register(FileItem)
 class FileItemAdmin(admin.ModelAdmin):
@@ -8,3 +8,5 @@ class FileItemAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 admin.site.register(FileContent)
+admin.site.register(Note_Category)
+admin.site.register(NoteContent)
