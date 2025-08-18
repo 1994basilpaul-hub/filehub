@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,16 +81,23 @@ WSGI_APPLICATION = 'filehub.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'keralapscpyq',
-        'USER': 'admin',
-        'PASSWORD': 'bpbp@123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "keralapscpyq",       # your local DB name
+        "USER": "admin",              # your local DB user
+        "PASSWORD": "bpbp@123",       # your local DB password
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
 
+# Override with Render DB when deployed
+if os.environ.get("DATABASE_URL"):
+    DATABASES["default"] = dj_database_url.config(
+        default=os.environ["DATABASE_URL"],
+        conn_max_age=600,
+        ssl_require=True,
+    )
 
 
 # Password validation
