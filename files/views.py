@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.db import models
 from django.db.models import Q
-from .models import FileItem, Category
+from .models import FileItem, Category,FileContent
 from .forms import FileUploadForm
 from django.http import HttpResponseRedirect, FileResponse
 import os
@@ -70,3 +70,20 @@ def upload_file(request):
     else:
         form = FileUploadForm()
     return render(request, 'files/upload.html', {'form': form})
+
+
+
+
+def explain(request, slug):
+    file_item = get_object_or_404(FileItem, slug=slug)
+    contents = file_item.contents.all()
+
+    # take category_no from the first related content
+    category_no = contents.first().category_no if contents.exists() else None  
+
+    return render(request, 'files/explain.html', {
+        'file_item': file_item,
+        'contents': contents,
+        'category_no': category_no,
+    })
+

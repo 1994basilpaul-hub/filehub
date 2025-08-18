@@ -1,0 +1,30 @@
+{% extends 'files/base.html' %}
+
+{% block content %}
+<!-- Page background -->
+<div class="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 py-12 px-4 flex justify-center">
+    <div class="w-full max-w-3xl text-left">
+        
+        <!-- Title -->
+        <h1 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-blue-600 mb-10 drop-shadow-sm">
+            {{ file_item.title }}
+        </h1>
+        <h1 class="text-2xl font-semibold text-gray-700 mb-8">
+             Category No: {{ category_no }} 
+        </h1>
+
+        <!-- Contents -->
+        {% for c in contents %}
+        <div class="backdrop-blur-sm bg-white/70 rounded-2xl p-6 mb-6 shadow-md hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300">
+            <p class="text-gray-800 leading-relaxed text-lg"><b>{{ c.content|linebreaks }}</b></p>
+        </div>
+        {% empty %}<br><br><br><br><br>
+        <div class="text-center text-gray-500 italic">
+          <h2>  This feature is under development. Please check back later............</h2>
+        </div>
+        {% endfor %}
+        
+    </div>
+</div>
+{% endblock %}
+

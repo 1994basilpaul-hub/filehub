@@ -26,7 +26,19 @@ class FileItem(models.Model):
     class Meta:
         ordering = ['-uploaded_at']
 
-    def str(self): return self.title
+    def __str__(self):
+     return self.title
+
 
     def get_absolute_url(self):
         return reverse('files:detail', kwargs={'slug': self.slug})
+    
+# New model for questions/content
+class FileContent(models.Model):
+    file_item = models.ForeignKey(FileItem, related_name='contents', on_delete=models.CASCADE)
+    category_no = models.CharField(max_length=50)  
+    content = models.TextField()  # Combined field for English/Malayalam/questions/options/answer/explanation
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Content for {self.file_item.title}"

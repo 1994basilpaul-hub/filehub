@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import FileItem, Category
+from .models import FileItem, Category,FileContent
 
 @admin.register(FileItem)
 class FileItemAdmin(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class FileItemAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
 
 admin.site.register(Category)
+admin.site.register(FileContent)

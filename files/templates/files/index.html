@@ -15,6 +15,7 @@
         <th>Description</th>
         
         <th>Download Link</th>
+        <th> Explanation Link</th>
       </tr>
     </thead>
     <tbody>
@@ -34,10 +35,16 @@
             Download
           </a>
         </td>
+        <td>
+        <a href="{% url 'files:explain' slug=item.slug %}" class="btn btn-success btn-sm btn-block">
+      Answers With Explanation
+       </a>
+      </td>
+
       </tr>
       {% empty %}
       <tr>
-        <td colspan="4" class="text-center">No files found.</td>
+        <td colspan="4" class="text-center">Comming Soon.......<br>Under Development</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -57,8 +64,12 @@
         </p>
         
         <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-block">Download</a>
+        <a href="{% url 'files:explain' slug=item.slug %}" class="btn btn-success btn-sm btn-block">
+      Answers With Explanation
+       </a>
       </div>
     </div>
+
   {% empty %}
     <p class="text-center">No files found.</p>
   {% endfor %}
