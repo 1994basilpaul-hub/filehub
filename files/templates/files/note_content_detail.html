@@ -1,0 +1,49 @@
+{% extends 'files/base.html' %}
+
+{% block title %}{{ note.title }} - Kerala PSC Preparation{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <div class="card shadow-sm border-0 rounded-4">
+        
+        <!-- Card Header with SEO-friendly Title -->
+        <div class="card-header bg-primary text-white rounded-top-4">
+          <h1 class="h3 mb-0" title="{{ note.title }}">{{ note.title }}</h1>
+        </div>
+
+        <!-- Note Content -->
+        <div class="card-body">
+          <div class="mb-4" style="line-height: 1.8; font-size: 1.1rem;">
+            <p>{{ note.content|linebreaks }}</p>
+          </div>
+
+          <!-- Back to category link -->
+          {% if note.category %}
+            <a href="{% url 'files:note_category_detail' slug=note.category.slug %}" 
+               class="btn btn-gradient btn-lg rounded-pill shadow-sm">
+              ← Back to {{ note.category.name }}
+            </a>
+          {% else %}
+            <p class="text-danger fw-semibold">Category not found</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional Bootstrap Gradient Button Styling -->
+<style>
+  .btn-gradient {
+    background: linear-gradient(90deg, #6f42c1, #e83e8c, #6610f2);
+    color: white;
+    transition: transform 0.3s ease, background 0.3s ease;
+  }
+  .btn-gradient:hover {
+    background: linear-gradient(90deg, #5a32a3, #d63384, #520dc2);
+    transform: scale(1.05);
+  }
+</style>
+{% endblock %}

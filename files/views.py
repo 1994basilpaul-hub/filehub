@@ -107,4 +107,13 @@ def note_category_detail(request, slug):
         'notes': notes
     })
 
+# files/views.py
+from django.shortcuts import render, get_object_or_404
+from .models import NoteContent
+
+def note_content_detail(request, slug):
+    note = get_object_or_404(NoteContent, slug=slug)
+    return render(request, 'files/note_content_detail.html', {'note': note})
+
+
 

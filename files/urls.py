@@ -9,6 +9,7 @@ urlpatterns = [
     path('category/<slug:slug>/', views.category_detail, name='category_detail'),
     path('explain/<slug:slug>/', views.explain, name='explain'),
     # files/urls.py
-    path('note_category/<slug:slug>/', views.note_category_detail, name='note_category_detail')
+    path('note_category/<slug:slug>/', views.note_category_detail, name='note_category_detail'),
+    path('note/<slug:slug>/', views.note_content_detail, name='note_content_detail'),
 
 ]
