@@ -36,7 +36,7 @@ class FileItem(models.Model):
 # New model for questions/content
 class FileContent(models.Model):
     file_item = models.ForeignKey(FileItem, related_name='contents', on_delete=models.CASCADE)
-    category_no = models.CharField(max_length=50)  
+    category_no = models.CharField(max_length=50, blank=True, null=True)  
     content = models.TextField()  # Combined field for English/Malayalam/questions/options/answer/explanation
     created_at = models.DateTimeField(auto_now_add=True)
 
