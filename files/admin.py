@@ -10,3 +10,4 @@ admin.site.register(Category)
 admin.site.register(FileContent)
 admin.site.register(Note_Category)
 admin.site.register(NoteContent)
+

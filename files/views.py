@@ -107,3 +107,4 @@ def note_category_detail(request, slug):
         'notes': notes
     })
 
+

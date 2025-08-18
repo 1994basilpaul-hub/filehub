@@ -5,3 +5,4 @@ def navbar_categories(request):
         'categories': Category.objects.all(),
         'note_categories': Note_Category.objects.all()
     }
+
