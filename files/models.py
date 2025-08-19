@@ -55,7 +55,6 @@ class NoteContent(models.Model):
     category = models.ForeignKey(Note_Category, on_delete=models.SET_NULL, null=True, blank=True)  
     content = models.TextField()
     slug = AutoSlugField(populate_from='title', unique=True)
-    slug = AutoSlugField(populate_from='title', unique=True)   # ← add this
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
