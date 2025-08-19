@@ -58,6 +58,9 @@
           {% endfor %}
         </p>
         <a href="{% url 'files:download' slug=item.slug %}" class="btn btn-success btn-block">Download</a>
+        <a href="{% url 'files:explain' slug=item.slug %}" class="btn btn-success btn-sm btn-block">
+      Answers With Explanation
+       </a>
       </div>
     </div>
   {% empty %}
