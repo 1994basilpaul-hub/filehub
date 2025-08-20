@@ -117,5 +117,21 @@ def note_content_detail(request, slug):
     note = get_object_or_404(NoteContent, slug=slug)
     return render(request, 'files/note_content_detail.html', {'note': note})
 
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import ContactForm
+
+def contact_view(request):
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Your message has been sent successfully ✅")
+            return redirect("files:contact")
+    else:
+        form = ContactForm()
+    return render(request, "files/contact.html", {"form": form})
+
+
 
 

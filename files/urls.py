@@ -12,5 +12,6 @@ urlpatterns = [
     # files/urls.py
     path('note_category/<slug:slug>/', views.note_category_detail, name='note_category_detail'),
     path('note/<slug:slug>/', views.note_content_detail, name='note_content_detail'),
+    path("contact/", views.contact_view, name="contact"),
 
 ]

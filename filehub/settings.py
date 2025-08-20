@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'crispy_forms',        # optional: better forms
     'django.contrib.sites',# for sitemap
     'django.contrib.sitemaps',
+    'widget_tweaks',
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MIDDLEWARE = [
