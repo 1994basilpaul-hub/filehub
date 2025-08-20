@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand" href="{% url 'files:index' %}">FileHub</a>
+    <a class="navbar-brand" href="{% url 'files:home' %}">PscHub</a>
 
     <!-- Toggler for mobile -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
@@ -15,7 +15,7 @@
       <!-- Left menu -->
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'files:index' %}">Home</a>
+          <a class="nav-link" href="{% url 'files:home' %}">Home</a>
         </li>
 
         <!-- Category Dropdown -->
@@ -25,6 +25,8 @@
             Categories
           </a>
           <div class="dropdown-menu" aria-labelledby="categoryDropdown">
+            <a class="dropdown-item" href="{% url 'files:index' %}">All Question Papers</a>
+
             {% for category in categories %}
               <a class="dropdown-item" href="{% url 'files:category_detail' category.slug %}">{{ category.name }}</a>
             {% empty %}

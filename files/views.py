@@ -12,6 +12,8 @@ from .models import Category, Note_Category, FileItem
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+def home(request):
+    return render(request, 'files/home.html')
 def index(request):
     qs = FileItem.objects.all()
     q = request.GET.get('q', '')  # default to empty string

@@ -1,0 +1,88 @@
+{% extends 'files/base.html' %}
+
+{% block title %}Categories - Kerala PSC Preparation{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto mt- p-4">
+  <div class="card shadow-lg rounded-4 border-0 text-center" style="background: linear-gradient(135deg, #08e795e2, #56ab2f);">
+    <div class="card-body">
+      <!-- Heading -->
+      <h3 class="display-5 fw-bold text-white mb-3 animate-fadeInShimmer">
+        Welcome To PscHub
+      </h3>
+
+      <!-- Subtitle -->
+      <p class="lead text-white opacity-90">
+        Your one-stop destination for Kerala PSC preparation</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Fade + Scale */
+@keyframes fadeInShimmer {
+  0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+  60% { opacity: 1; transform: scale(1.03) translateY(0); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-fadeInShimmer {
+  animation: fadeInShimmer 1.5s ease-out forwards;
+}
+</style>
+
+
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+
+      <!-- Note Categories Section -->
+      <div class="card shadow-sm border-0 rounded-4 mb-4">
+        <div class="card-header bg-primary text-white rounded-top-4">
+          <h2 class="h5 mb-0">Psc Notes</h2>
+        </div>
+        <div class="card-body">
+          {% if note_categories %}
+            <ul class="list-group list-group-flush">
+              {% for cat in note_categories %}
+                <li class="list-group-item">
+                  <a href="{% url 'files:note_category_detail' cat.slug %}" class="text-decoration-none">
+                    {{ cat.name }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No note categories found.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Categories Section -->
+      <div class="card shadow-sm border-0 rounded-4">
+        <div class="card-header bg-success text-white rounded-top-4">
+          <h2 class="h5 mb-0">Previous Year Question Papers</h2>
+        </div>
+        <div class="card-body">
+               <a  href="{% url 'files:index' %}">All Question Papers</a>
+          {% if categories %}
+            <ul class="list-group list-group-flush">
+              {% for category in categories %}
+                <li class="list-group-item">
+                  
+                  <a href="{% url 'files:category_detail' category.slug %}" class="text-decoration-none">
+                    {{ category.name }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p class="text-muted">No categories found.</p>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
